@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="nl-NL"> 
+    
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechMo Automation</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet">
+
+    <style>
+        /* Basis opmaak */
+        body {
+            font-family: 'Unica One', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #222;
+            background-color: #fff;
+            text-transform: uppercase; /* Deze regel maakt alles direct hoofdletters */
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- HEADER & LOGO --- */
+        .header-wrapper {
+            position: relative; 
+            display: flex;
+            justify-content: center; 
+            padding: 20px 0 10px 0; 
+            width: 100%; 
+        }
+        .menu-toggle {
+            position: absolute;
+            right: 0; 
+            top: 20px; 
+            font-size: 36px; 
+            cursor: pointer;
+            color: #333;
+            z-index: 100;
+        }        
+        .logo-container {
+            display: flex;
+            margin-top: 0px; /* Zorgt dat het logo zakt en de rest meeschuift */
+            text-decoration: none;
+            width: 70%;
+            max-width: 600px; /* Bepaalt hoe groot het logo maximaal mag worden op desktops. Pas dit getal gerust aan. */
+        }
+        .logo-img {
+            width: 100%; /* Zorgt dat de afbeelding netjes meeschaalt op mobiel */
+            height: auto;
+            display: block;
+        }
+        /* --- FULLSCREEN MENU OVERLAY --- */
+        .fullscreen-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(45, 45, 45, 0.96); 
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .fullscreen-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .close-btn {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            font-size: 30px;
+            color: #fff;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .close-btn:hover { color: #ccc; }
+        .menu-links {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        .menu-links a {
+            color: #fff;
+            font-size: 24px;
+            text-decoration: none;
+            margin: 12px 0;
+            transition: color 0.2s;
+        }
+        .menu-links a:hover { text-decoration: underline; }
+        
+        .menu-footer {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .menu-footer .copyright {
+            color: #aaa;
+            font-size: 12px;
+            margin: 0;
+        }
+        .menu-socials {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 15px;
+        }
+        .menu-socials a {
+            color: #fff;
+            font-size: 16px;
+            text-decoration: none;
+            border: 1px solid #fff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .menu-socials a:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        /* --- Main Content --- */
+        main {
+            padding: 40px 0;
+        }
+
+        /* Typewriter Sectie */
+        .hero-text {
+            font-size: 60px;
+            line-height: 1.2;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap; 
+            gap: 15px; 
+        }
+        .typed-container {
+            background-color: #000;
+            color: #fff;
+            padding: 5px 15px;
+            display: inline-block;
+        }
+
+        /* Slider Sectie */
+        .slider-wrapper {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 80px auto; 
+            position: relative;
+            overflow: hidden;
+        }
+        .slider-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Footer */
+        .site-footer {
+            text-align: center;
+            padding: 40px 0 40px 0; 
+        }
+        .social-links {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .social-links a {
+            color: #555;
+            font-size: 20px;
+            text-decoration: none;
+        }
+        .social-links a:hover { color: #000; }
+        .copyright {
+            font-size: 14px;
+            color: #777;
+        }
+
+        /* Responsief voor mobiel */
+        @media screen and (max-width: 768px) {
+            .hero-text {
+                font-size: 30px;
+                flex-direction: column; 
+                align-items: flex-start; 
+                gap: 10px;
+            }
+            .typed-container { padding: 2px 10px; }
+            .slider-wrapper { margin-bottom: 40px; }
+            .menu-footer {
+                flex-direction: column-reverse; 
+                gap: 15px;
+                bottom: 20px;
+            }
+            .close-btn {
+                top: 20px;
+                right: 20px;
+            }
+            /* Optioneel: hamburger menu op mobiel iets strakker zetten */
+            .menu-toggle {
+                top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="fullscreen-menu" class="fullscreen-menu">
+        <div class="close-btn" id="close-menu"><i class="fas fa-times"></i></div>
+        
+        <nav class="menu-links">
+            <a href="index.html">Home</a>
+            <a href="over/index.html">Over</a>
+            <a href="technology-in-motion/index.html">Technology in Motion</a>
+            <a href="people-in-motion/index.html">People in Motion</a>
+            <a href="blog/index.html">Blog</a>
+            <a href="contact/index.html">Contact</a>
+        </nav>
+
+        <div class="menu-footer">
+            <p class="copyright">© Copyright TechMo 2026. Alle rechten voorbehouden.</p>
+            <ul class="menu-socials">
+                <li><a href="https://www.linkedin.com/company/techmo-automation" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                <li><a href="#" class="email-link"><i class="far fa-envelope"></i></a></li>
+                <li><a href="#" class="wa-link" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+                <li><a href="#" class="tel-link"><i class="fas fa-phone-alt"></i></a></li>            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <header class="header-wrapper">
+            <a href="/" class="logo-container">
+                <img src="images/TechMo_logo.png" alt="TechMo Automation" class="logo-img" />
+            </a>
+            <div class="menu-toggle" id="open-menu">
+                <svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </div>
+        </header>
+    </div>
+
+    <main class="container">
+        <section class="hero-text">
+            <span>Uw specialist in:</span>
+            <span class="typed-container"><span id="typed-output"></span></span>
+        </section>
+
+        <section class="slider-wrapper cycle-slideshow" 
+            data-cycle-fx="fade" 
+            data-cycle-timeout="2000"
+            data-cycle-speed="500"
+            data-cycle-slides="> img">
+            <img src="images/robot2-1200x750.jpg" alt="Fanuc Robot" />
+            <img src="images/DigitalFactory-1200x750.jpg" alt="Siemens S7" />
+            <img src="images/simotion-1200x750.jpg" alt="Simumerik 840D" />
+            <img src="images/switch-1200x750.jpg" alt="Netwerkspecialist" />
+            <img src="images/machine-1200x750.jpg" alt="Industriele Automatisering" />
+        </section>
+    </main>
+
+    <footer class="site-footer container">
+        <ul class="social-links">
+            <li><a href="https://www.linkedin.com/company/techmo-automation" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="mailto:contact@techmo.pro"><i class="far fa-envelope"></i></a></li>
+            <li><a href="https://api.whatsapp.com/send?phone=31624134640" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+            <li><a href="tel:+31624134640" target="_blank"><i class="fas fa-phone-alt"></i></a></li>
+        </ul>
+        <div class="copyright">
+            <p>© Copyright TechMo 2026. Alle rechten voorbehouden.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.4/typed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.cycle2/2.1.6/jquery.cycle2.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Anti-spam: Telefoonnummer in stukjes opbouwen
+            var landcode = "+31";
+            var deel1 = "624";
+            var deel2 = "134";
+            var deel3 = "640";
+            
+            var compleetNummer = landcode + deel1 + deel2 + deel3;
+            var waNummer = "31" + deel1 + deel2 + deel3; // WhatsApp gebruikt geen +
+
+            // Vul de lege linkjes in de HTML nu in
+            $('.tel-link').attr('href', 'tel:' + compleetNummer);
+            $('.wa-link').attr('href', 'https://api.whatsapp.com/send?phone=' + waNummer);
+
+            // Anti-spam: E-mailadres in stukjes opbouwen
+            var naam = "contact";
+            var domein = "techmo.pro";
+            var compleetEmail = naam + "@" + domein;
+
+            // Vul de lege e-maillinkjes in
+            $('.email-link').attr('href', 'mailto:' + compleetEmail);
+
+            $("#typed-output").typed({
+                cursorChar: "_",
+                contentType: "html",
+                loop: true,
+                typeSpeed: 100,
+                backSpeed: 50,
+                startDelay: 300,
+                backDelay: 1000,
+                showCursor: true,
+                strings: ["Siemens Sinumerik", "Siemens S7", "Siemens Sinamics", "Fanuc Robots", "Kuka Robots", "Motion", "HMI / SCADA", "Netwerken", "Inbedrijfstellen", "Ontwerp en Advies", "Training", "Industriele Automatisering"]
+            });
+
+            $('#open-menu').click(function() {
+                $('#fullscreen-menu').addClass('active');
+                $('body').css('overflow', 'hidden');
+            });
+
+            $('#close-menu').click(function() {
+                $('#fullscreen-menu').removeClass('active');
+                $('body').css('overflow', '');
+            });
+        });
+    </script>
+</body>
+</html>

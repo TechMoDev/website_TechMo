@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="nl-NL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Over - TechMo Automation</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet">
+
+    <style>
+        /* Basis opmaak */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #222;
+            background-color: #fff;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigatie */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+        }
+        .logo {
+            font-family: 'Unica One', cursive; 
+            font-size: 56px; 
+            color: #333;
+            text-decoration: none;
+            text-transform: uppercase; 
+        }
+        .logo span {
+            color: #dd1c1c; /* TechMo Rood */
+        }
+        .menu-toggle {
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+            z-index: 100;
+        }
+
+        /* Fullscreen Menu Overlay */
+        .fullscreen-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(45, 45, 45, 0.96);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .fullscreen-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .close-btn {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            font-size: 30px;
+            color: #fff;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .close-btn:hover { color: #ccc; }
+        .menu-links {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        .menu-links a {
+            color: #fff;
+            font-size: 24px;
+            text-decoration: none;
+            margin: 12px 0;
+            transition: color 0.2s;
+        }
+        .menu-links a:hover { text-decoration: underline; }
+        .menu-footer {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .menu-footer .copyright {
+            color: #aaa;
+            font-size: 12px;
+            margin: 0;
+        }
+        .menu-socials {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 15px;
+        }
+        .menu-socials a {
+            color: #fff;
+            font-size: 16px;
+            text-decoration: none;
+            border: 1px solid #fff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .menu-socials a:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        /* --- Pagina Specifieke Opmaak ('Over') --- */
+        main {
+            padding: 40px 0;
+        }
+        .content-grid {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            margin-bottom: 60px;
+        }
+        .text-column {
+            flex: 1; /* Neemt de helft van de ruimte in */
+        }
+        .text-column p {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        .image-column {
+            flex: 1; /* Neemt de helft van de ruimte in */
+            text-align: center;
+        }
+        .image-column h2 {
+            font-family: 'Unica One', cursive;
+            font-size: 40px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .profile-img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #eee;
+            padding: 5px;
+        }
+        
+        /* Rode Call-To-Action Balk */
+        .cta-banner {
+            background-color: #dd1c1c;
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 40px;
+        }
+        .cta-banner h2 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: normal;
+        }
+
+        /* Footer */
+        .site-footer {
+            text-align: center;
+            padding: 40px 0;
+        }
+        .social-links {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .social-links a {
+            color: #555;
+            font-size: 20px;
+            text-decoration: none;
+        }
+        .social-links a:hover { color: #000; }
+        .copyright {
+            font-size: 14px;
+            color: #777;
+        }
+
+        /* Responsief */
+        @media screen and (max-width: 768px) {
+            .logo { font-size: 36px; }
+            .content-grid {
+                flex-direction: column; /* Zet tekst en foto onder elkaar op mobiel */
+            }
+            .image-column h2 {
+                margin-top: 30px; /* Ruimte boven de titel als deze onder de tekst staat */
+            }
+            .cta-banner h2 {
+                font-size: 24px;
+            }
+            .menu-footer {
+                flex-direction: column-reverse;
+                gap: 15px;
+                bottom: 20px;
+            }
+            .close-btn {
+                top: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="fullscreen-menu" class="fullscreen-menu">
+        <div class="close-btn" id="close-menu"><i class="fas fa-times"></i></div>
+        
+        <nav class="menu-links">
+            <a href="../index.html">Home</a>
+            <a href="index.html">Over</a>
+            <a href="../technology-in-motion/index.html">Technology in Motion</a>
+            <a href="../people-in-motion/index.html">People in Motion</a>
+            <a href="../blog/index.html">Blog</a>
+            <a href="../contact/index.html">Contact</a>
+        </nav>
+
+        <div class="menu-footer">
+            <p class="copyright">© Copyright TechMo 2026. Alle rechten voorbehouden.</p>
+            <ul class="menu-socials">
+                <li><a href="https://www.linkedin.com/company/techmo-automation" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                <li><a href="mailto:contact@techmo.pro"><i class="far fa-envelope"></i></a></li>
+                <li><a href="https://api.whatsapp.com/send?phone=31624134640" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+                <li><a href="tel:+31624134640" target="_blank"><i class="fas fa-phone-alt"></i></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <a href="/" class="logo">TechMo <span>Automation</span></a>
+            <div class="menu-toggle" id="open-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </header>
+    </div>
+
+    <main>
+        <div class="container">
+            <div class="content-grid">
+                
+                <div class="text-column">
+                    <p>TechMo is gespecialiseerd in het ontwikkelen van motion en robotica oplossingen op het gebied van industriële automatisering in alle fasen van de ontwikkeling. Van het inventariseren en realiseren van de eisen tot het in bedrijf stellen en opleveren van producten.</p>
+                    
+                    <p>Senior engineer Pepijn Albers is een expert en bekend om zijn functionaliteit, kennis, creativiteit en betrouwbaarheid. Hij heeft gewerkt aan imposante projecten over de hele wereld. Zijn ervaring is enorm en zeer divers.</p>
+                    
+                    <p>TechMo brengt de industrie in beweging. Niet alleen de machines en productielijnen worden in beweging gebracht maar ook de werknemers en afdelingen die betrokken zijn met deze industriële automatisering worden voorzien van kennis en inzicht om zo de onderneming naar het hoogste niveau te brengen door middel van trainingen.</p>
+                    
+                    <p>Deze overdracht van kennis en inzichten zijn erg belangrijk voor alle afdelingen binnen een onderneming. Dit in verband met zowel de interne als wel de externe communicatie en verwachtingen.</p>
+                </div>
+
+                <div class="image-column">
+                    <h2>Over</h2>
+                    <img src="../images/pepijn.jpg" alt="Pepijn Albers, Senior Engineer" class="profile-img" />
+                </div>
+
+            </div>
+        </div>
+
+        <div class="cta-banner">
+            <div class="container">
+                <h2>Breng uw bedrijf ook in beweging.</h2>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer container">
+        <ul class="social-links">
+            <li><a href="https://www.linkedin.com/company/techmo-automation" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="mailto:contact@techmo.pro"><i class="far fa-envelope"></i></a></li>
+            <li><a href="https://api.whatsapp.com/send?phone=31624134640" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+            <li><a href="tel:+31624134640" target="_blank"><i class="fas fa-phone-alt"></i></a></li>
+        </ul>
+        <div class="copyright">
+            <p>© Copyright TechMo 2026. Alle rechten voorbehouden.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Hamburger Menu bediening
+            $('#open-menu').click(function() {
+                $('#fullscreen-menu').addClass('active');
+                $('body').css('overflow', 'hidden'); 
+            });
+
+            $('#close-menu').click(function() {
+                $('#fullscreen-menu').removeClass('active');
+                $('body').css('overflow', ''); 
+            });
+        });
+    </script>
+</body>
+</html>
