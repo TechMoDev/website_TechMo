@@ -187,14 +187,14 @@
             text-transform: uppercase;
         }
 
-        /* Google Maps Container */
+        /* Google Maps Container over de volle breedte */
         .map-container {
-            max-width: 500px; 
             width: 100%; 
-            height: 400px;
+            height: 500px; /* Lekkere hoge kaart voor een ruimtelijk effect */
             border-radius: 8px; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
             overflow: hidden;
+            margin-bottom: 40px;
         }
         .map-container iframe {
             width: 100%;
@@ -262,9 +262,9 @@
         <div class="menu-footer">
             <p class="copyright">© Copyright TechMo <span class="current-year"></span>. Alle rechten voorbehouden.</p>
             <ul class="menu-socials">
-                <li><a href="https://www.linkedin.com/company/techmo-automation" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                <li><a href="https://www.linkedin.com/company/techmo-automation" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a></li>
                 <li><a href="#" class="email-link"><i class="far fa-envelope"></i></a></li>
-                <li><a href="#" class="wa-link" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+                <li><a href="#" class="wa-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a></li>
                 <li><a href="#" class="tel-link"><i class="fas fa-phone-alt"></i></a></li>
             </ul>
         </div>
@@ -292,26 +292,17 @@
             <span class="typed-container"><span id="typed-output"></span></span>
         </h1>
         
-        <div class="over-layout">
-            <div class="over-tekst">
-                <div class="normale-tekst" style="margin-top: 150px; text-transform: uppercase;">
-                    <h3 style="font-size: 28px; font-weight: normal; text-transform: none;">TechMo</h3>
-                    Badhuisstraat 3<br>
-                    1531 CA Wormer<br>
-                </div>
-            </div>
-
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2428.8872049923985!2d4.80465657668612!3d52.49513247205477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5f0a0d0d8bbd5%3A0xc6fb047814c1eb21!2sBadhuisstraat%203%2C%201531%20CA%20Wormer!5e0!3m2!1sen!2snl!4v1700000000000!5m2!1sen!2snl" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
+        <div class="map-container">
+                <iframe src="https://maps.google.com/maps?q=Badhuisstraat%203,%201531%20CA%20Wormer,%20Netherlands&t=&z=9&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
+        
     </main>
 
     <footer class="site-footer container">
         <ul class="social-links">
-            <li><a href="https://www.linkedin.com/company/techmo-automation" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://www.linkedin.com/company/techmo-automation" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a></li>
             <li><a href="#" class="email-link"><i class="far fa-envelope"></i></a></li>
-            <li><a href="#" class="wa-link" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+            <li><a href="#" class="wa-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a></li>
             <li><a href="#" class="tel-link"><i class="fas fa-phone-alt"></i></a></li>
         </ul>
         <div class="copyright">
