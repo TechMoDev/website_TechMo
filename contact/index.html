@@ -187,15 +187,16 @@
             text-transform: uppercase;
         }
 
-        /* Google Maps Container over de volle breedte */
+        /* Google Maps Container */
         .map-container {
             width: 100%; 
-            height: 500px; /* Lekkere hoge kaart voor een ruimtelijk effect */
-            border-radius: 8px; 
+            max-width: 1200px;
+            margin: 0 auto 40px auto;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
             overflow: hidden;
-            margin-bottom: 40px;
+            aspect-ratio: 1200 / 750;
         }
+        
         .map-container iframe {
             width: 100%;
             height: 100%;
@@ -242,7 +243,6 @@
                 text-align: left; 
                 min-height: 75px;
             }
-            .map-container { height: 300px; }
         }
     </style>
 </head>
