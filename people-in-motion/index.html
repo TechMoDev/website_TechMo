@@ -315,7 +315,7 @@
             <li><a href="#" class="tel-link"><i class="fas fa-phone-alt"></i></a></li>
         </ul>
         <div class="copyright">
-            <p>© Copyright TechMo 2026. Alle rechten voorbehouden.</p>
+            <p>© Copyright TechMo <span class="current-year"></span>. Alle rechten voorbehouden.</p>
         </div>
     </footer>
 
@@ -340,6 +340,8 @@
             var D9X4L2P7 = G7K2 + "@" + V4N9;
 
             $('.email-link').attr('href', 'mailto:' + D9X4L2P7);
+
+            $('.current-year').text(new Date().getFullYear());
 
             $('#open-menu').click(function() {
                 $('#fullscreen-menu').addClass('active');

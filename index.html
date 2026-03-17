@@ -295,7 +295,7 @@
             <li><a href="tel:+31624134640" target="_blank"><i class="fas fa-phone-alt"></i></a></li>
         </ul>
         <div class="copyright">
-            <p>© Copyright TechMo 2026. Alle rechten voorbehouden.</p>
+            <p>© Copyright TechMo <span class="current-year"></span>. Alle rechten voorbehouden.</p>
         </div>
     </footer>
 
@@ -333,6 +333,8 @@
                 showCursor: true,
                 strings: ["Siemens Sinumerik", "Siemens S7", "Siemens Sinamics", "Fanuc Robots", "Kuka Robots", "Motion", "HMI / SCADA", "Netwerken", "Inbedrijfstellen", "Ontwerp en Advies", "Training", "Industriele Automatisering"]
             });
+
+            $('.current-year').text(new Date().getFullYear());
 
             $('#open-menu').click(function() {
                 $('#fullscreen-menu').addClass('active');
