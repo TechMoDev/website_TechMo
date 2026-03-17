@@ -19,13 +19,14 @@
             padding: 0;
             color: #222;
             background-color: #fff;
-            text-transform: uppercase; /* Deze regel maakt alles direct hoofdletters */
+            text-transform: uppercase; 
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
+
         /* --- HEADER & LOGO --- */
         .header-wrapper {
             position: relative; 
@@ -55,6 +56,7 @@
             height: auto;
             display: block;
         }
+
         /* --- FULLSCREEN MENU OVERLAY --- */
         .fullscreen-menu {
             position: fixed;
@@ -149,20 +151,19 @@
         /* Typewriter Sectie */
         .hero-text {
             font-size: 60px;
-            line-height: 1.2;
+            font-weight: normal;
             margin-top: 40px;
             margin-bottom: 40px;
-            font-weight: normal;
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap; 
-            gap: 15px; 
+            text-align: left;
+            line-height: 1.2;
+            min-height: 145px;
         }
         .typed-container {
-            background-color: #000;
-            color: #fff;
-            padding: 5px 15px;
-            display: inline-block;
+            background-color: transparent;
+            color: #000;
+            padding: 0;
+            display: inline;
+            text-transform: uppercase;
         }
 
         /* Slider Sectie */
@@ -207,11 +208,11 @@
         @media screen and (max-width: 768px) {
             .hero-text {
                 font-size: 30px;
-                flex-direction: column; 
-                align-items: flex-start; 
-                gap: 10px;
+                text-align: left;
+                min-height: 75px;
+                display: block;
+                margin-top: 20px;
             }
-            .typed-container { padding: 2px 10px; }
             .slider-wrapper { margin-bottom: 40px; }
             .menu-footer {
                 flex-direction: column-reverse; 
@@ -222,7 +223,6 @@
                 top: 20px;
                 right: 20px;
             }
-            /* Optioneel: hamburger menu op mobiel iets strakker zetten */
             .menu-toggle {
                 top: 20px;
             }
@@ -248,7 +248,8 @@
                 <li><a href="https://www.linkedin.com/company/techmo-automation" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
                 <li><a href="#" class="email-link"><i class="far fa-envelope"></i></a></li>
                 <li><a href="#" class="wa-link" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
-                <li><a href="#" class="tel-link"><i class="fas fa-phone-alt"></i></a></li>            </ul>
+                <li><a href="#" class="tel-link"><i class="fas fa-phone-alt"></i></a></li>
+            </ul>
         </div>
     </div>
 
@@ -268,9 +269,8 @@
     </div>
 
     <main class="container">
-        <section class="hero-text">
-            <span>Uw specialist in:</span>
-            <span class="typed-container"><span id="typed-output"></span></span>
+        <section class="hero-text" style="text-transform: uppercase;">
+            Uw specialist in <span class="typed-container"><span id="typed-output"></span></span>
         </section>
 
         <section class="slider-wrapper cycle-slideshow" 
@@ -330,7 +330,7 @@
                 startDelay: 300,
                 backDelay: 1000,
                 showCursor: true,
-                strings: ["Siemens Sinumerik", "Siemens S7", "Siemens Sinamics", "Fanuc Robots", "Kuka Robots", "Motion", "HMI / SCADA", "Netwerken", "Inbedrijfstellen", "Ontwerp en Advies", "Training", "Industriele Automatisering"]
+                strings: ["Siemens Sinumerik 840D", "Siemens PLC's", "Siemens Sinamics", "Fanuc Robots", "Storing en Diagnose", "Kuka Robots", "TIA Portal", "Motion", "HMI / SCADA", "Netwerken", "In bedrijf stellen", "Ontwerp en Advies", "Training", "Industriële Automatisering", "ProfiNet", "CodeSys", "Modbus"]
             });
 
             $('.current-year').text(new Date().getFullYear());
