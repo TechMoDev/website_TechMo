@@ -1,43 +1,43 @@
 <!DOCTYPE html>
-<html lang="nl-NL">
+<html lang="nl-NL"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Over - TechMo</title>
+    <title>Over - TechMo Automation</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet">
 
     <style>
-        /* Basis opmaak */
+        /* === BASIS OPMAAK (Kopie van homepage) === */
         body {
             font-family: 'Unica One', sans-serif;
             margin: 0;
             padding: 0;
             color: #222;
             background-color: #fff;
-            text-transform: uppercase;
+            text-transform: uppercase; /* Deze blijft staan! */
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
         /* --- HEADER & LOGO --- */
         .header-wrapper {
             position: relative; 
             display: flex;
             justify-content: center; 
-            padding: 40px 0 10px 0; 
+            padding: 20px 0 10px 0; 
             width: 100%; 
         }
         .menu-toggle {
             position: absolute;
             right: 0; 
-            top: 40px; 
+            top: 20px; 
             font-size: 36px; 
             cursor: pointer;
             color: #333;
@@ -45,17 +45,16 @@
         }        
         .logo-container {
             display: flex;
-            margin-top: 40px; 
+            margin-top: 0px;
             text-decoration: none;
-            width: 100%;
-            max-width: 600px; 
+            width: 70%;
+            max-width: 600px;
         }
         .logo-img {
-            width: 100%; 
+            width: 100%;
             height: auto;
             display: block;
         }
-
         /* --- FULLSCREEN MENU OVERLAY --- */
         .fullscreen-menu {
             position: fixed;
@@ -142,48 +141,15 @@
             color: #000;
         }
 
-        /* --- CONTENT STYLING (Specifiek voor deze pagina) --- */
-        .page-content {
-            padding: 60px 0;
-            max-width: 1000px; 
-            margin: 0 auto;
-        }
-        .page-title {
-            font-size: 48px;
-            margin-bottom: 40px;
-            text-align: left; 
-        }
-        
-        /* Layout voor tekst naast foto */
-        .over-layout {
-            display: flex;
-            gap: 40px; 
-            align-items: flex-start; 
-        }
-        .over-tekst {
-            flex: 1; 
-        }
-        .profile-img {
-            max-width: 350px; 
-            width: 100%; 
-            height: auto;
-            border-radius: 8px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+        /* --- Main Content --- */
+        main {
+            padding: 40px 0;
         }
 
-        /* Hoofdletters uit voor de leesbare tekst */
-        .normale-tekst {
-            text-transform: none; 
-            font-size: 20px; 
-            line-height: 1.6; 
-            margin-bottom: 20px;
-            color: #444; 
-        }
-
-        /* --- FOOTER --- */
+        /* Footer */
         .site-footer {
             text-align: center;
-            padding: 40px 0; 
+            padding: 40px 0 40px 0; 
         }
         .social-links {
             list-style: none;
@@ -204,6 +170,41 @@
             color: #777;
         }
 
+        /* === SPECIFIEKE OPMAAK VOOR 'OVER' PAGINA === */
+        
+        /* De slimme layout voor tekst naast foto */
+        .over-layout {
+            display: flex;
+            gap: 40px; 
+            align-items: flex-start; 
+        }
+        .over-tekst {
+            flex: 1; 
+        }
+        .profile-img {
+            max-width: 350px; 
+            width: 100%; 
+            height: auto;
+            border-radius: 8px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+        }
+        
+        /* Layout van de tekst */
+        .normale-tekst {
+            /* Let op: we gebruiken de body uppercase, dus text-transform hoeft hier niet meer in! */
+            font-size: 20px; 
+            line-height: 1.6; 
+            margin-bottom: 20px;
+            color: #444;
+            text-align: justify; 
+        }
+        
+        .page-title {
+            font-size: 48px;
+            margin-bottom: 40px;
+            text-align: left; 
+        }
+
         /* Responsief voor mobiel */
         @media screen and (max-width: 768px) {
             .menu-footer {
@@ -211,20 +212,24 @@
                 gap: 15px;
                 bottom: 20px;
             }
-            .close-btn, .menu-toggle {
+            .close-btn {
                 top: 20px;
                 right: 20px;
             }
-            .page-title { 
-                font-size: 36px;
-                text-align: center; 
+            .menu-toggle {
+                top: 20px;
             }
+            /* Specifiek voor Over pagina op mobiel */
             .over-layout {
-                flex-direction: column; /* Tekst boven, foto onder op mobiel */
+                flex-direction: column; /* Tekst boven, foto onder */
             }
             .profile-img { 
                 max-width: 100%; 
                 margin-top: 20px;
+            }
+            .page-title { 
+                font-size: 36px;
+                text-align: left; 
             }
             .normale-tekst { font-size: 18px; }
         }
@@ -233,12 +238,7 @@
 <body>
 
     <div id="fullscreen-menu" class="fullscreen-menu">
-        <div class="close-btn" id="close-menu">
-            <svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-        </div>
+        <div class="close-btn" id="close-menu"><i class="fas fa-times"></i></div>
         
         <nav class="menu-links">
             <a href="../index.html">Home</a>
@@ -275,7 +275,7 @@
         </header>
     </div>
 
-    <main class="container page-content">
+    <main class="container">
         <h1 class="page-title">Over TechMo</h1>
         
         <div class="over-layout">
@@ -297,7 +297,6 @@
             <img src="../images/pepijn.jpg" alt="Senior engineer Pepijn Albers" class="profile-img" />
         </div>
     </main>
-
     <footer class="site-footer container">
         <ul class="social-links">
             <li><a href="https://www.linkedin.com/company/techmo-automation" target="_blank"><i class="fab fa-linkedin"></i></a></li>
@@ -311,6 +310,7 @@
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <script>
         $(document).ready(function() {
             // Anti-spam bots instellingen (Geavanceerd)
@@ -331,7 +331,6 @@
 
             $('.email-link').attr('href', 'mailto:' + D9X4L2P7);
 
-            // Hamburger menu acties
             $('#open-menu').click(function() {
                 $('#fullscreen-menu').addClass('active');
                 $('body').css('overflow', 'hidden');
