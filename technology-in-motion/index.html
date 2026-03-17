@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="nl-NL"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Over - TechMo Automation</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet">
+
+    <style>
+        /* === BASIS OPMAAK (Kopie van homepage) === */
+        body {
+            font-family: 'Unica One', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #222;
+            background-color: #fff;
+            text-transform: uppercase; /* Deze blijft staan! */
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* --- HEADER & LOGO --- */
+        .header-wrapper {
+            position: relative; 
+            display: flex;
+            justify-content: center; 
+            padding: 20px 0 10px 0; 
+            width: 100%; 
+        }
+        .menu-toggle {
+            position: absolute;
+            right: 0; 
+            top: 20px; 
+            font-size: 36px; 
+            cursor: pointer;
+            color: #333;
+            z-index: 100;
+        }        
+        .logo-container {
+            display: flex;
+            margin-top: 0px;
+            text-decoration: none;
+            width: 70%;
+            max-width: 600px;
+        }
+        .logo-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        /* --- FULLSCREEN MENU OVERLAY --- */
+        .fullscreen-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(45, 45, 45, 0.96); 
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .fullscreen-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .close-btn {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            font-size: 30px;
+            color: #fff;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .close-btn:hover { color: #ccc; }
+        .menu-links {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        .menu-links a {
+            color: #fff;
+            font-size: 24px;
+            text-decoration: none;
+            margin: 12px 0;
+            transition: color 0.2s;
+        }
+        .menu-links a:hover { text-decoration: underline; }
+        
+        .menu-footer {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .menu-footer .copyright {
+            color: #aaa;
+            font-size: 12px;
+            margin: 0;
+        }
+        .menu-socials {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 15px;
+        }
+        .menu-socials a {
+            color: #fff;
+            font-size: 16px;
+            text-decoration: none;
+            border: 1px solid #fff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .menu-socials a:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        /* --- Main Content --- */
+        main {
+            padding: 40px 0;
+        }
+
+        /* Footer */
+        .site-footer {
+            text-align: center;
+            padding: 40px 0 40px 0; 
+        }
+        .social-links {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .social-links a {
+            color: #555;
+            font-size: 20px;
+            text-decoration: none;
+        }
+        .social-links a:hover { color: #000; }
+        .copyright {
+            font-size: 14px;
+            color: #777;
+        }
+
+        /* === SPECIFIEKE OPMAAK VOOR 'OVER' PAGINA === */
+        
+        /* De slimme layout voor tekst naast foto */
+        .over-layout {
+            display: flex;
+            gap: 40px; 
+            align-items: flex-start; 
+        }
+        .over-tekst {
+            flex: 1; 
+        }
+        .profile-img {
+            max-width: 350px; 
+            width: 100%; 
+            height: auto;
+            border-radius: 8px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+        }
+        
+        /* Layout van de tekst */
+        .normale-tekst {
+            /* Let op: we gebruiken de body uppercase, dus text-transform hoeft hier niet meer in! */
+            font-size: 20px; 
+            line-height: 1.6; 
+            margin-bottom: 20px;
+            color: #444;
+            text-align: justify; 
+        }
+        
+        .page-title {
+            font-size: 60px;
+            font-weight: normal;
+            margin-bottom: 20px;
+            text-align: left; 
+        }
+
+        /* Responsief voor mobiel */
+        @media screen and (max-width: 768px) {
+            .menu-footer {
+                flex-direction: column-reverse; 
+                gap: 15px;
+                bottom: 20px;
+            }
+            .close-btn {
+                top: 20px;
+                right: 20px;
+            }
+            .menu-toggle {
+                top: 20px;
+            }
+            /* Specifiek voor Over pagina op mobiel */
+            .over-layout {
+                flex-direction: column; /* Tekst boven, foto onder */
+            }
+            .profile-img { 
+                max-width: 100%; 
+                margin-top: 20px;
+            }
+            .page-title { 
+                font-size: 30px;
+                text-align: left; 
+            }
+            .normale-tekst { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="fullscreen-menu" class="fullscreen-menu">
+        <div class="close-btn" id="close-menu"><i class="fas fa-times"></i></div>
+        
+        <nav class="menu-links">
+            <a href="../index.html">Home</a>
+            <a href="index.html">Over</a>
+            <a href="../technology-in-motion/index.html">Technology in Motion</a>
+            <a href="../people-in-motion/index.html">People in Motion</a>
+            <a href="../blog/index.html">Blog</a>
+            <a href="../contact/index.html">Contact</a>
+        </nav>
+
+        <div class="menu-footer">
+            <p class="copyright">© Copyright TechMo 2026. Alle rechten voorbehouden.</p>
+            <ul class="menu-socials">
+                <li><a href="https://www.linkedin.com/company/techmo-automation" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                <li><a href="#" class="email-link"><i class="far fa-envelope"></i></a></li>
+                <li><a href="#" class="wa-link" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+                <li><a href="#" class="tel-link"><i class="fas fa-phone-alt"></i></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <header class="header-wrapper">
+            <a href="../index.html" class="logo-container">
+                <img src="../images/TechMo_logo.png" alt="TechMo Automation" class="logo-img" />
+            </a>
+            <div class="menu-toggle" id="open-menu">
+                <svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </div>
+        </header>
+    </div>
+
+    <main class="container">
+        <h1 class="page-title">Technology in Motion</h1>
+        
+        <div class="over-layout">
+            <div class="over-tekst">
+                <p class="normale-tekst">
+                    TechMo is gespecialiseerd in het ontwikkelen van motion en robotica oplossingen op het gebied van industriële automatisering in alle fasen van de ontwikkeling. Van het inventariseren en realiseren van de eisen tot het in bedrijf stellen en opleveren van producten.
+                </p>
+                
+                <h3 style="margin-top: 40px; margin-bottom: 20px; font-weight: normal; font-size: 28px; text-transform: uppercase;">Specialiteiten</h3>
+                <ul class="normale-tekst" style="list-style-type: square; padding-left: 20px; margin-bottom: 40px; line-height: 2;">
+                    <li>PLC / DCS / IPC</li>
+                    <li>Software Engineering</li>
+                    <li>Hardware Engineering</li>
+                    <li>R & D</li>
+                    <li>In bedrijf stellen</li>
+                    <li>Robotica</li>
+                    <li>Motion</li>
+                    <li>Training</li>
+                    <li>HMI / SCADA</li>
+                    <li>Advies</li>
+                </ul>
+            </div>
+
+            <img src="../images/tech-motion-foto.jpg" alt="Technology in Motion" class="profile-img" />
+        </div>
+
+        <div style="text-align: center; margin-top: 60px; padding-top: 40px; border-top: 1px solid #eee;">
+            <p style="font-size: 32px; font-weight: normal; margin-bottom: 10px; font-style: italic; text-transform: none;">
+                "Never mistake motion for action."
+            </p>
+            <p style="font-size: 20px; color: #777; margin-bottom: 40px; text-transform: uppercase;">
+                - Ernest Hemingway
+            </p>
+        </div>
+    </main>
+    ```
+
+Zet deze erin. Hoe willen we het rechtergedeelte (waar nu de tijdelijke `<img>` tag staat) precies invullen? Wil je daar één grote overzichtsfoto, of had de oude website daar inderdaad een collage/grid van meerdere foto's die je wilt nabouwen? Laat het maar weten!
+    <footer class="site-footer container">
+        <ul class="social-links">
+            <li><a href="https://www.linkedin.com/company/techmo-automation" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="#" class="email-link"><i class="far fa-envelope"></i></a></li>
+            <li><a href="#" class="wa-link" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+            <li><a href="#" class="tel-link"><i class="fas fa-phone-alt"></i></a></li>
+        </ul>
+        <div class="copyright">
+            <p>© Copyright TechMo 2026. Alle rechten voorbehouden.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Anti-spam bots instellingen (Geavanceerd)
+            var W1M8F = "134";
+            var H5T3Q = "640";
+            var B7K2P = "+31";
+            var R9N4X = "624";
+            
+            var K4R9P2V7 = B7K2P + R9N4X + W1M8F + H5T3Q;
+            var M1Z6B8N5 = "31" + R9N4X + W1M8F + H5T3Q;
+
+            $('.tel-link').attr('href', 'tel:' + K4R9P2V7);
+            $('.wa-link').attr('href', 'https://api.whatsapp.com/send?phone=' + M1Z6B8N5);
+
+            var V4N9 = "techmo.pro";
+            var G7K2 = "contact";
+            var D9X4L2P7 = G7K2 + "@" + V4N9;
+
+            $('.email-link').attr('href', 'mailto:' + D9X4L2P7);
+
+            $('#open-menu').click(function() {
+                $('#fullscreen-menu').addClass('active');
+                $('body').css('overflow', 'hidden');
+            });
+
+            $('#close-menu').click(function() {
+                $('#fullscreen-menu').removeClass('active');
+                $('body').css('overflow', '');
+            });
+        });
+    </script>
+</body>
+</html>
