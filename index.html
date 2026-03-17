@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="nl-NL"> 
-    
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +26,6 @@
             margin: 0 auto;
             padding: 0 20px;
         }
-
         /* --- HEADER & LOGO --- */
         .header-wrapper {
             position: relative; 
@@ -48,13 +45,13 @@
         }        
         .logo-container {
             display: flex;
-            margin-top: 0px; /* Zorgt dat het logo zakt en de rest meeschuift */
+            margin-top: 0px;
             text-decoration: none;
             width: 70%;
-            max-width: 600px; /* Bepaalt hoe groot het logo maximaal mag worden op desktops. Pas dit getal gerust aan. */
+            max-width: 600px;
         }
         .logo-img {
-            width: 100%; /* Zorgt dat de afbeelding netjes meeschaalt op mobiel */
+            width: 100%;
             height: auto;
             display: block;
         }
@@ -308,26 +305,22 @@
     
     <script>
         $(document).ready(function() {
-            // Anti-spam: Telefoonnummer in stukjes opbouwen
-            var landcode = "+31";
-            var deel1 = "624";
-            var deel2 = "134";
-            var deel3 = "640";
+            var W1M8F = "134";
+            var H5T3Q = "640";
+            var B7K2P = "+31";
+            var R9N4X = "624";
             
-            var compleetNummer = landcode + deel1 + deel2 + deel3;
-            var waNummer = "31" + deel1 + deel2 + deel3; // WhatsApp gebruikt geen +
+            var K4R9P2V7 = B7K2P + R9N4X + W1M8F + H5T3Q;
+            var M1Z6B8N5 = "31" + R9N4X + W1M8F + H5T3Q;
 
-            // Vul de lege linkjes in de HTML nu in
-            $('.tel-link').attr('href', 'tel:' + compleetNummer);
-            $('.wa-link').attr('href', 'https://api.whatsapp.com/send?phone=' + waNummer);
+            $('.tel-link').attr('href', 'tel:' + K4R9P2V7);
+            $('.wa-link').attr('href', 'https://api.whatsapp.com/send?phone=' + M1Z6B8N5);
 
-            // Anti-spam: E-mailadres in stukjes opbouwen
-            var naam = "contact";
-            var domein = "techmo.pro";
-            var compleetEmail = naam + "@" + domein;
+            var V4N9 = "techmo.pro";
+            var G7K2 = "contact";
+            var D9X4L2P7 = G7K2 + "@" + V4N9;
 
-            // Vul de lege e-maillinkjes in
-            $('.email-link').attr('href', 'mailto:' + compleetEmail);
+            $('.email-link').attr('href', 'mailto:' + D9X4L2P7);
 
             $("#typed-output").typed({
                 cursorChar: "_",
